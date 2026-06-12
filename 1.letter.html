@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose One</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./1.letter-page.css" />
+  </head>
+
+  <body>
+    <main class="choose-page">
+      <!-- 背景图：images/bg2.jpg -->
+      <div class="letter-bg"></div>
+
+      <a href="./index.html" class="back-home">back</a>
+
+      <section class="envelope-group">
+        <!-- postcard -->
+        <a href="./1,1postcard.html" class="envelope-card postcard-card">
+          <div class="envelope">
+            <!-- 最底层：底部阴影 -->
+            <div class="env-shadow"></div>
+
+            <!-- 翻盖：闭合时在最前，打开后退到信纸后面 -->
+            <div class="env-flap"></div>
+
+            <!-- 信纸：闭合时在信封后面，打开后在翻盖前面、信封后面 -->
+            <div class="env-paper postcard-paper">
+              <span>postcard</span>
+            </div>
+
+            <!-- 信封主体：始终压在信纸前面 -->
+            <div class="env-body"></div>
+          </div>
+        </a>
+
+        <!-- letter -->
+        <a href="./1.2single-letter.html" class="envelope-card letter-card">
+          <div class="envelope">
+            <!-- 最底层：底部阴影 -->
+            <div class="env-shadow"></div>
+
+            <!-- 翻盖：闭合时在最前，打开后退到信纸后面 -->
+            <div class="env-flap"></div>
+
+            <!-- 信纸：闭合时在信封后面，打开后在翻盖前面、信封后面 -->
+            <div class="env-paper letter-paper">
+              <span>letter</span>
+            </div>
+
+            <!-- 信封主体：始终压在信纸前面 -->
+            <div class="env-body"></div>
+          </div>
+        </a>
+      </section>
+
+      <h1 class="choose-title">choose one</h1>
+
+      <!-- hover 信封时的纸张摩擦音效 -->
+      <audio id="paperHoverSound" preload="auto">
+        <source
+          src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./91d84828b17ccc09ef8c10a3ba1a0b3548f78b8e/paper-envelope-hover.wav"
+          type="audio/wav"
+        />
+      </audio>
+    </main>
+
+    <script src="./1.letter-page.js"></script>
+  </body>
+</html>

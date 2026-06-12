@@ -1,0 +1,537 @@
+@font-face {
+  font-family: "ChenXudong";
+  src: url("https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./cdec55ebda5ea1f3b00c7d1d399a1afbb13ffdf5/%E9%99%88%E6%97%AD%E4%B8%9C%E5%AD%97%E4%BD%93.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #111;
+  color: #111;
+  font-family: "Courier Prime", "Noto Serif SC", serif;
+}
+
+.typewriter-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #111;
+}
+
+/* 背景 */
+.type-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./5218857d9ed4c1faba283c7796996c9e9a26e9f2/type-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(6px) brightness(72%) saturate(95%);
+  transform: scale(1.04);
+}
+
+/* back */
+.back-link {
+  position: fixed;
+  left: 58px;
+  top: 34px;
+  z-index: 60;
+
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+  font-family: "Courier Prime", serif;
+  font-size: 28px;
+  letter-spacing: 0.18em;
+}
+
+/* Send 按钮 */
+.send-btn {
+  position: fixed;
+  right: 60px;
+  top: 30px;
+  z-index: 60;
+
+  width: 100px;
+  height: 40px;
+
+  border: 2px solid rgba(255, 255, 255, 0.58);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.9);
+
+  font-family: "Courier Prime", serif;
+  font-size: 18px;
+  letter-spacing: 0.34em;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.send-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 整个舞台 */
+.typewriter-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+/* 打印机后层 */
+.printer-back {
+  position: absolute;
+  left: 50%;
+  bottom: 126px;
+  transform: translateX(-50%);
+
+  width: min(92vw, 1420px);
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+/* 纸张窗口 */
+.paper-wrap {
+  position: absolute;
+  left: 50%;
+
+  /* 控制纸张整体上下位置 */
+  bottom: -250px;
+
+  transform: translateX(-50%);
+
+  /* 关键：纸张变窄 */
+  width: min(52vw, 620px);
+  height: 430px;
+
+  z-index: 4;
+
+  overflow: visible;
+  pointer-events: auto;
+}
+
+/* 纸张本体 */
+.paper {
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+
+  transform: translateX(-50%) translateY(var(--paper-y, 0px));
+
+  width: 100%;
+  min-height: 700px;
+
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.16);
+
+  z-index: 4;
+
+  transition: transform 0.28s cubic-bezier(0.22, 0.68, 0.22, 1);
+}
+
+/* 打字时纸张轻微震动 */
+.paper.shake {
+  animation: paperShake 0.12s ease;
+}
+
+@keyframes paperShake {
+  0% {
+    transform: translateX(-50%) translateY(var(--paper-y, 0px));
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(calc(var(--paper-y, 0px) + 2px));
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(var(--paper-y, 0px));
+  }
+}
+
+.paper-inner {
+  position: relative;
+
+  /* 控制文字在纸张上的位置 */
+  padding: 120px 50px 80px;
+
+  min-height: 700px;
+
+  z-index: 20;
+}
+
+/* 固定开头 */
+.start-line {
+  font-family: "ChenXudong", "Noto Serif SC", serif;
+  font-size: 24px;
+  line-height: 34px;
+  letter-spacing: 0.06em;
+  margin-bottom: 26px;
+}
+
+/* 输入区域 */
+.letter-input {
+  position: relative;
+  z-index: 30;
+
+  display: block;
+
+  width: 100%;
+  min-height: 430px;
+
+  border: none;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+
+  background: transparent;
+
+  /* 关键：确保文字颜色不是透明 */
+  color: #111;
+
+  font-family: "ChenXudong", "Noto Serif SC", serif;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0.06em;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  caret-color: #111;
+
+  pointer-events: auto;
+}
+
+.letter-input::placeholder {
+  color: rgba(0, 0, 0, 0.28);
+}
+
+/* 头针 */
+.type-head {
+  position: absolute;
+
+  /*
+    JS 会实时修改 left。
+    这里是默认初始值。
+  */
+  left: 50%;
+  bottom: 190px;
+
+  width: 96px;
+  z-index: 8;
+
+  transform: translateX(0);
+  pointer-events: none;
+
+  transition: left 0.08s linear, transform 0.08s linear;
+}
+
+.type-head.hit {
+  animation: headHit 0.12s ease;
+}
+
+@keyframes headHit {
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.3);
+    transform: translateY(2px);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+/* 打印机前层 */
+.printer-front {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+
+  width: min(108vw, 1750px);
+  z-index: 10;
+
+  pointer-events: none;
+}
+
+/* 提示 */
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Courier Prime", serif;
+  font-size: 22px;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+
+  text-align: center;
+  white-space: nowrap;
+
+  transition: opacity 0.4s ease;
+}
+
+.hint.hide {
+  opacity: 0;
+}
+
+/* 发送后纸张上移 */
+.typewriter-page.sent .paper {
+  animation: paperSend 1s ease forwards;
+}
+
+@keyframes paperSend {
+  0% {
+    transform: translateX(-50%) translateY(var(--paper-y, 0px));
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(-520px);
+    opacity: 0;
+  }
+}
+
+/* 添加图片按钮：圆形玻璃质感 */
+.add-picture-btn {
+  position: fixed;
+  left: 50%;
+  top: 72px;
+  transform: translateX(-50%);
+  z-index: 70;
+
+  width: 58px;
+  height: 58px;
+
+  border: 1.5px solid rgba(255, 255, 255, 0.48);
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255, 255, 255, 0.48),
+      rgba(255, 255, 255, 0.12) 42%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18),
+    inset 0 1px 8px rgba(255, 255, 255, 0.42),
+    inset 0 -8px 18px rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  cursor: pointer;
+  overflow: visible;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* 水波纹扩散 */
+.add-picture-btn::before,
+.add-picture-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+
+  opacity: 0;
+  transform: scale(1);
+
+  pointer-events: none;
+}
+
+.add-picture-btn:hover::before {
+  animation: rippleWave 1.25s ease-out infinite;
+}
+
+.add-picture-btn:hover::after {
+  animation: rippleWave 1.25s ease-out 0.36s infinite;
+}
+
+@keyframes rippleWave {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.25);
+  }
+}
+
+/* 圆角加号图形 */
+.plus-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  z-index: 2;
+
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.plus-icon::before,
+.plus-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 22px;
+  height: 4px;
+
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.86);
+
+  transform: translate(-50%, -50%);
+}
+
+.plus-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* hover 显示文字 */
+.add-picture-text {
+  position: absolute;
+
+  /* 放到按钮左侧 */
+  right: 72px;
+  left: auto;
+
+  top: 50%;
+
+  /* 初始状态：稍微靠右，hover 时往左滑出 */
+  transform: translateY(-50%) translateX(12px);
+
+  white-space: nowrap;
+
+  color: rgba(255, 255, 255, 0.86);
+  font-family: "Courier Prime", "Noto Serif SC", serif;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+
+  opacity: 0;
+  filter: blur(4px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.add-picture-btn:hover {
+  transform: scale(1.06);
+  background:
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255, 255, 255, 0.64),
+      rgba(255, 255, 255, 0.18) 42%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.22),
+    inset 0 1px 12px rgba(255, 255, 255, 0.52),
+    inset 0 -8px 18px rgba(255, 255, 255, 0.12);
+}
+
+.add-picture-btn:hover .plus-icon {
+  transform: rotate(90deg) scale(0.94);
+}
+
+.add-picture-btn:hover .add-picture-text {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  filter: blur(0);
+}
+
+.picture-input {
+  display: none;
+}
+
+/* 小屏适配 */
+@media (max-width: 900px) {
+  .paper-wrap {
+    bottom: -250px;
+    width: min(52vw, 620px);
+    height: 430px;
+  }
+
+  .paper {
+    bottom: -30px;
+    min-height: 430px;
+  }
+
+  .paper-inner {
+    padding: 38px 46px 46px;
+    min-height: 430px;
+  }
+
+  .start-line {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .letter-input {
+    font-size: 17px;
+    line-height: 27px;
+    min-height: 290px;
+  }
+
+  .type-head {
+    bottom: 190px;
+    width: 54px;
+  }
+}
+
+  .printer-front {
+    width: 108vw;
+  }
+
+  .hint {
+    font-size: 15px;
+  }
+}

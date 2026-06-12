@@ -1,0 +1,345 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #f4f4f2;
+  color: #111;
+  font-family: "Courier Prime", "Noto Serif SC", "Songti SC", serif;
+}
+
+.single-letter-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  border: 6px solid #111;
+  background: #f4f4f2;
+}
+
+/* 背景图预留 */
+.page-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("./images/bg2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 1.5;
+  filter: grayscale(100%) brightness(92%) contrast(130%);
+  pointer-events: none;
+}
+
+.back-link {
+  position: absolute;
+  left: 42px;
+  top: 34px;
+  z-index: 20;
+
+  color: #111;
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  opacity: 0.72;
+}
+
+/* 滚动窗口：允许鼠标滚轮滚动 */
+.scroll-window {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scroll-behavior: smooth;
+}
+
+/* 隐藏滚动条，但保留滚轮功能 */
+.scroll-window::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.scroll-window {
+  scrollbar-width: none;
+}
+
+/* 滚动轨道：不再用 CSS animation，而是交给 JS 自动滚动 */
+.scroll-track {
+  position: relative;
+  width: 760px;
+
+  margin: 8vh auto 20vh;
+  transform: none;
+  animation: none;
+}
+
+/* 单个信件卡片 */
+.letter-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 260px 180px 260px;
+  column-gap: 72px;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 210px;
+  margin: 16px 0;
+
+  color: #111;
+  text-decoration: none;
+}
+
+/* 照片占位：固定在中间列 */
+.photo-slot {
+  position: relative;
+  grid-column: 2;
+  width: 145px;
+  height: 190px;
+
+  justify-self: center;
+
+  overflow: hidden;
+  background: #b6c8a8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.72);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  transform-origin: center center;
+
+  transition:
+    transform 0.55s cubic-bezier(0.22, 0.68, 0.22, 1),
+    box-shadow 0.55s ease,
+    filter 0.55s ease;
+}
+
+/* 真实照片插入时使用 */
+.photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 纯色图形占位 */
+.photo-slot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.85;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.45), transparent 22%),
+    radial-gradient(circle at 70% 65%, rgba(0, 0, 0, 0.12), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent 60%);
+}
+
+.photo-slot span {
+  position: relative;
+  z-index: 2;
+}
+
+/* 不同照片颜色 */
+.color-01 {
+  background: linear-gradient(135deg, #6fa35f, #b7d28b);
+}
+
+.color-02 {
+  background: linear-gradient(135deg, #7fa78f, #c9ddd0);
+}
+
+.color-03 {
+  background: linear-gradient(135deg, #48694f, #9daf80);
+  width: 175px;
+  height: 130px;
+}
+
+.color-04 {
+  background: linear-gradient(135deg, #7b9576, #e4d7aa);
+}
+
+.color-05 {
+  background: linear-gradient(135deg, #4e705e, #b8c6a2);
+  width: 170px;
+  height: 140px;
+}
+
+.color-06 {
+  background: linear-gradient(135deg, #83906e, #d9ceb1);
+}
+
+.color-07 {
+  background: linear-gradient(135deg, #526c4d, #a5c099);
+}
+
+.color-08 {
+  background: linear-gradient(135deg, #6f8d88, #d8e4df);
+  width: 165px;
+  height: 138px;
+}
+
+.color-09 {
+  background: linear-gradient(135deg, #78937f, #ccd9bd);
+}
+
+.color-10 {
+  background: linear-gradient(135deg, #4d6f5a, #d4c49a);
+  width: 172px;
+  height: 135px;
+}
+
+/* 解释文字 */
+.letter-info {
+  position: relative;
+  top: auto;
+
+  width: 260px;
+
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(4px);
+
+  transition:
+    opacity 0.48s ease,
+    transform 0.48s ease,
+    filter 0.48s ease;
+
+  pointer-events: none;
+}
+
+/* 右侧说明：文字在右边 */
+.side-right .letter-info {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: start;
+  text-align: left;
+}
+
+/* 左侧说明：文字在左边 */
+.side-left .letter-info {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  text-align: right;
+}
+
+/* 照片始终在中间列 */
+.side-right .photo-slot,
+.side-left .photo-slot {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.date {
+  font-size: 15px;
+  letter-spacing: 0.32em;
+  margin-bottom: 8px;
+}
+
+.place {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  margin-bottom: 18px;
+}
+
+.story {
+  font-size: 12px;
+  line-height: 1.65;
+  letter-spacing: 0.16em;
+  color: rgba(0, 0, 0, 0.58);
+  margin-bottom: 20px;
+}
+
+.views {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* hover 效果 */
+.letter-item:hover {
+  z-index: 20;
+}
+
+.letter-item:hover .photo-slot {
+  transform: scale(1.18);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.14);
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.letter-item:hover .letter-info {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+}
+
+/* 小屏适配 */
+@media (max-width: 1000px) {
+  .scroll-track {
+    width: 680px;
+  }
+
+  .letter-info {
+    width: 220px;
+  }
+
+  .side-right .letter-info {
+    left: calc(50% + 95px);
+  }
+
+  .side-left .letter-info {
+    right: calc(50% + 95px);
+  }
+
+  .photo-slot {
+    width: 130px;
+    height: 170px;
+  }
+}
+
+@media (max-width: 760px) {
+  .scroll-track {
+    width: 100%;
+  }
+
+  .letter-item {
+    min-height: 360px;
+  }
+
+  .photo-slot {
+    margin: 0 auto !important;
+  }
+
+  .letter-info {
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    top: auto;
+
+    width: 70vw;
+    margin: 28px auto 0;
+
+    text-align: center !important;
+  }
+}

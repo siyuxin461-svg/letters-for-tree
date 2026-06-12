@@ -1,0 +1,475 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: "Noto Serif SC", serif;
+  background: #1f1f1f;
+  color: #111;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.action-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 56px 5vw 90px;
+  overflow: hidden;
+}
+
+.action-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/bg%28act%29.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.96;
+}
+
+.action-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.back-link {
+  position: fixed;
+  left: 5vw;
+  top: 34px;
+  z-index: 20;
+
+  color: rgba(0, 0, 0, 0.58);
+  font-family: "Courier Prime", serif;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.back-link:hover {
+  opacity: 0.55;
+  transform: translateX(-4px);
+}
+
+/* 顶部标题 */
+.page-head {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  margin-top: 45px;
+}
+
+.page-head h1 {
+  margin: 0;
+
+  font-family: "Courier Prime", serif;
+  font-size: clamp(38px, 4.1vw, 64px);
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: none;
+
+  color: rgba(0, 0, 0, 0.92);
+}
+
+.page-head p {
+  margin: 25px 0 0;
+
+  font-size: clamp(16px, 1.25vw, 22px);
+  line-height: 1.9;
+  letter-spacing: 0.32em;
+
+  color: rgba(0, 0, 0, 0.86);
+}
+
+/* 搜索框 */
+.search-box {
+  position: relative;
+  width: min(260px, 46vw);
+  height: 46px;
+  margin: 48px auto 0;
+}
+
+.search-box input {
+  width: 100%;
+  height: 100%;
+
+  border: 1.2px solid rgba(255, 255, 255, 0.56);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  outline: none;
+
+  padding: 0 24px;
+
+  color: rgba(0, 0, 0, 0.72);
+  font-family: "Noto Serif SC", serif;
+  font-size: 20px;
+  letter-spacing: 0.16em;
+
+  box-shadow:
+    inset 0 1px 5px rgba(255, 255, 255, 0.52),
+    0 10px 26px rgba(0, 0, 0, 0.06);
+
+  transition:
+    box-shadow 0.45s ease,
+    background 0.45s ease,
+    border-color 0.45s ease,
+    transform 0.45s ease;
+}
+
+.search-box input::placeholder {
+  color: rgba(0, 0, 0, 0.18);
+}
+
+/* 点击 / 聚焦后内阴影加深 */
+.search-box input:focus {
+  background: rgba(255, 255, 255, 0.36);
+  border-color: rgba(255, 255, 255, 0.72);
+
+  box-shadow:
+    inset 8px 8px 22px rgba(0, 0, 0, 0.13),
+    inset -8px -8px 22px rgba(255, 255, 255, 0.52),
+    0 14px 30px rgba(0, 0, 0, 0.08);
+
+  transform: translateY(1px);
+}
+
+/* 城市卡片区域 */
+.city-grid {
+  position: relative;
+  z-index: 5;
+
+  /* 整体宽度控制，保证三个卡片一排并居中 */
+  width: min(1080px, 86vw);
+  margin: 54px auto 0;
+
+  display: grid;
+
+  /* 三个一排 */
+  grid-template-columns: repeat(3, 1fr);
+
+  /* 上下间距 / 左右间距 */
+  gap: 46px 64px;
+
+  justify-items: center;
+}
+
+/* 城市卡片 */
+.city-card {
+  position: relative;
+  display: block;
+
+  /* 单个卡片变小 */
+  width: 300px;
+  height: 190px;
+
+  overflow: hidden;
+  text-decoration: none;
+
+  background: rgba(0, 0, 0, 0.18);
+
+  box-shadow:
+    10px 13px 15px rgba(0, 0, 0, 0.24),
+    0 2px 3px rgba(255, 255, 255, 0.16) inset;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.55s ease,
+    box-shadow 0.55s ease,
+    opacity 0.45s ease;
+}
+
+.city-card:hover {
+  transform: translateY(-6px) scale(1.018);
+  box-shadow:
+    14px 18px 24px rgba(0, 0, 0, 0.28),
+    0 2px 3px rgba(255, 255, 255, 0.12) inset;
+}
+
+.city-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* 彩色图在底层 */
+.city-image img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  display: block;
+}
+
+/* 彩色底图 */
+.color-img {
+  filter: brightness(0.95) contrast(1.05) saturate(1.08);
+  transform: scale(1.02);
+
+  transition:
+    transform 1.15s ease,
+    filter 1.15s ease;
+}
+
+/* 黑白图覆盖在上层 */
+.bw-img {
+  z-index: 2;
+
+  filter: grayscale(100%) brightness(0.74) contrast(1.08);
+  transform: scale(1.02);
+
+  /*
+    默认黑白完整覆盖。
+    这里用 mask 做柔和边缘，不用 clip-path 硬切。
+  */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 0.25) 48%,
+    rgba(0, 0, 0, 0.75) 58%,
+    #000 70%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 0.25) 48%,
+    rgba(0, 0, 0, 0.75) 58%,
+    #000 70%,
+    #000 100%
+  );
+
+  -webkit-mask-size: 220% 100%;
+  mask-size: 220% 100%;
+
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+
+  transition:
+    -webkit-mask-position 1.25s cubic-bezier(0.4, 0, 0.15, 1),
+    mask-position 1.25s cubic-bezier(0.4, 0, 0.15, 1),
+    transform 1.25s ease,
+    filter 1.25s ease;
+}
+
+/* hover 后黑白层从左往右退场 */
+.city-card:hover .bw-img {
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+
+  transform: scale(1.06);
+}
+
+/* hover 后彩色层轻微放大 */
+.city-card:hover .color-img {
+  transform: scale(1.06);
+  filter: brightness(1) contrast(1.08) saturate(1.15);
+}
+
+/* 让彩色底文字也清楚 */
+.city-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.12),
+      rgba(0, 0, 0, 0.18)
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.08),
+      rgba(0, 0, 0, 0.24)
+    );
+
+  opacity: 0.72;
+
+  transition:
+    opacity 0.55s ease,
+    background 0.55s ease;
+}
+
+.city-card:hover .city-overlay {
+  opacity: 0.58;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.08),
+      rgba(0, 0, 0, 0.22)
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.02),
+      rgba(0, 0, 0, 0.2)
+    );
+}
+
+/* 默认城市名称 */
+.city-title {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255, 255, 255, 0.66);
+  text-align: center;
+
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.4),
+    0 0 2px rgba(255, 255, 255, 0.2);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+.city-title .cn {
+  font-size: clamp(40px, 4.2vw, 64px);
+  line-height: 1;
+  letter-spacing: 0.32em;
+  margin-left: 0.32em;
+}
+
+.city-title .en {
+  margin-top: 14px;
+
+  font-family: "Courier Prime", serif;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+/* hover 后城市名称退掉 */
+.city-card:hover .city-title {
+  opacity: 0;
+  transform: translateY(-10px);
+  filter: blur(5px);
+}
+
+/* hover 后统计文字 */
+.city-stats {
+  position: absolute;
+  left: 28px;
+  top: 28px;
+  z-index: 6;
+
+  color: rgba(255, 255, 255, 0.95);
+  font-family: "Courier Prime", "Noto Serif SC", serif;
+
+  opacity: 0;
+  transform: translateX(-12px);
+  filter: blur(5px);
+
+  transition:
+    opacity 0.5s ease 0.18s,
+    transform 0.5s ease 0.18s,
+    filter 0.5s ease 0.18s;
+}
+
+.city-stats p {
+  margin: 0 0 12px;
+
+  display: grid;
+  grid-template-columns: 54px auto;
+  column-gap: 18px;
+  align-items: center;
+
+  font-size: clamp(16px, 1.45vw, 21px);
+  line-height: 1.1;
+  letter-spacing: 0.12em;
+
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.62),
+    0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.city-card:hover .city-stats {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+/* 搜索隐藏状态 */
+.city-card.is-hidden {
+  opacity: 0;
+  transform: scale(0.94);
+  pointer-events: none;
+}
+
+/* 响应式 */
+@media (max-width: 1100px) {
+  .city-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 56px;
+  }
+}
+
+@media (max-width: 720px) {
+  .action-page {
+    padding: 46px 6vw 70px;
+  }
+
+  .page-head h1 {
+    letter-spacing: 0.22em;
+  }
+
+  .page-head p {
+    margin-top: 34px;
+    font-size: 17px;
+    letter-spacing: 0.18em;
+  }
+
+  .city-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+    margin-top: 64px;
+  }
+
+  .search-box {
+    width: min(340px, 80vw);
+    height: 56px;
+    margin-top: 38px;
+  }
+
+  .search-box input {
+    font-size: 22px;
+  }
+
+  .city-title .cn {
+    font-size: 46px;
+  }
+
+  .city-title .en {
+    font-size: 38px;
+  }
+}

@@ -1,0 +1,445 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #f4f4f2;
+  color: #111;
+  font-family: "Cormorant Garamond", "Songti SC", serif;
+}
+
+.choose-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  border: 6px solid #111;
+  background: #f4f4f2;
+}
+
+/* 背景图 */
+.letter-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-image: url("./images/bg2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0.55;
+  filter: grayscale(100%) brightness(92%) contrast(130%);
+  pointer-events: none;
+}
+
+/* 返回 */
+.back-home {
+  position: absolute;
+  left: 44px;
+  top: 38px;
+  z-index: 30;
+
+  color: #111;
+  text-decoration: none;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+/* 两个信封布局 */
+.envelope-group {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+}
+
+.envelope-card {
+  position: absolute;
+  display: block;
+  width: 390px;
+  height: 270px;
+
+  color: #111;
+  text-decoration: none;
+  transition: opacity 0.35s ease;
+}
+
+.postcard-card {
+  left: 10%;
+  top: 24%;
+  transform: rotate(-6deg);
+}
+
+.letter-card {
+  right: 11%;
+  top: 24%;
+}
+
+.envelope-group:hover .envelope-card:not(:hover) {
+  opacity: 0.82;
+}
+
+/* 信封整体 */
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  perspective: 900px;
+  transform-style: preserve-3d;
+
+  transition: transform 0.55s ease;
+}
+
+.envelope-card:hover .envelope {
+  transform: translateY(-8px);
+}
+
+/* 0 最底层：阴影 */
+.env-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+
+  width: 88%;
+  height: 28px;
+  z-index: 0;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.23) 0%,
+    rgba(0, 0, 0, 0.12) 38%,
+    rgba(0, 0, 0, 0) 75%
+  );
+
+  filter: blur(11px);
+  opacity: 0.42;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.envelope-card:hover .env-shadow {
+  opacity: 0.62;
+  transform: translateX(-50%) translateY(8px) scaleX(1.08);
+}
+
+/* 1 后层：开启后的翻盖 */
+.env-open-flap {
+  position: absolute;
+  left: 50%;
+  bottom: 150px;
+
+  width: 350px;
+  height: 122px;
+  z-index: 1;
+
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+
+  transform-origin: top center;
+  transform: translateX(-50%) rotateX(0deg);
+
+  opacity: 0.82;
+  backface-visibility: visible;
+  transform-style: preserve-3d;
+
+  filter:
+    drop-shadow(0 5px 7px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
+
+  transition:
+    transform 0.72s cubic-bezier(0.2, 0.72, 0.18, 1),
+    filter 0.72s ease,
+    opacity 0.45s ease;
+}
+
+.postcard-card .env-open-flap {
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.letter-card .env-open-flap {
+  background: rgba(250, 242, 207, 0.74);
+}
+
+/* 翻盖纸张光影 */
+.env-open-flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.22),
+      rgba(0, 0, 0, 0.06)
+    ),
+    linear-gradient(
+      35deg,
+      transparent 48%,
+      rgba(255, 255, 255, 0.28) 49%,
+      transparent 51%
+    );
+
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* hover 后：开启翻盖仍然在信纸后面 */
+.envelope-card:hover .env-open-flap {
+  z-index: 1;
+
+  transform:
+    translateX(-50%)
+    rotateX(155deg)
+    translateY(25px);
+
+  opacity: 0.9;
+
+  filter:
+    drop-shadow(0 -8px 12px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
+}
+
+/* 2 中间层：信纸 / 明信片 */
+.env-paper {
+  position: absolute;
+  left: 50%;
+  bottom: 105px;
+
+  transform: translateX(-50%) translateY(0) rotate(0deg);
+
+  width: 245px;
+  height: 122px;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 23px;
+  letter-spacing: 0.02em;
+  color: #111;
+
+  opacity: 0.95;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+  transition:
+    transform 0.62s cubic-bezier(0.22, 0.68, 0.22, 1) 0.12s,
+    box-shadow 0.58s ease,
+    opacity 0.45s ease;
+}
+
+.postcard-paper {
+  background: rgba(224, 224, 219, 0.68);
+}
+
+.letter-paper {
+  background: rgba(213, 211, 196, 0.8);
+}
+
+.env-paper span {
+  transform: translateY(-9px);
+}
+
+/* hover 后：信纸在开启翻盖前面，但仍在信封主体后面 */
+.postcard-card:hover .env-paper {
+  z-index: 2;
+  transform: translateX(-50%) translateY(-40px) rotate(-4deg);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.letter-card:hover .env-paper {
+  z-index: 2;
+  transform: translateX(-50%) translateY(-40px) rotate(-5deg);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* 5 上层：信封主体 */
+.env-body {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+
+  width: 350px;
+  height: 168px;
+  z-index: 5;
+
+  overflow: hidden;
+  border-radius: 1px 1px 5px 5px;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.13),
+    inset 0 1px 2px rgba(255, 255, 255, 0.52);
+
+  transition: box-shadow 0.55s ease;
+}
+
+.postcard-card .env-body {
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.letter-card .env-body {
+  background: rgba(244, 239, 210, 0.64);
+}
+
+.envelope-card:hover .env-body {
+  z-index: 5;
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.58);
+}
+
+/* 6 最上层：闭合状态 V 形翻盖 */
+.env-front-flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 108px;
+  z-index: 6;
+
+  clip-path: polygon(0 0, 100% 0, 50% 74%);
+
+  opacity: 0.72;
+
+  filter:
+    drop-shadow(0 5px 7px rgba(0, 0, 0, 0.1))
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.07));
+
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+.postcard-card .env-front-flap {
+  background: rgba(246, 246, 246, 0.58);
+}
+
+.letter-card .env-front-flap {
+  background: rgba(248, 241, 211, 0.72);
+}
+
+/* 闭合翻盖折痕 */
+.env-front-flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      22deg,
+      transparent 49.4%,
+      rgba(0, 0, 0, 0.16) 50%,
+      transparent 50.8%
+    ),
+    linear-gradient(
+      -22deg,
+      transparent 49.4%,
+      rgba(0, 0, 0, 0.16) 50%,
+      transparent 50.8%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.16),
+      rgba(0, 0, 0, 0.03)
+    );
+
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+/* hover 时闭合翻盖变淡，但仍在最上面 */
+.envelope-card:hover .env-front-flap {
+  z-index: 6;
+  opacity: 0.18;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+}
+
+/* 底部标题 */
+.choose-title {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  font-size: clamp(42px, 4.2vw, 66px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* 预览窗口较小时 */
+@media (max-width: 1200px) {
+  .envelope-card {
+    width: 340px;
+    height: 240px;
+  }
+
+  .env-body {
+    width: 305px;
+    height: 150px;
+  }
+
+  .env-front-flap {
+    height: 98px;
+  }
+
+  .env-open-flap {
+    width: 305px;
+    height: 108px;
+    bottom: 90px;
+  }
+
+  .env-paper {
+    width: 215px;
+    height: 108px;
+    bottom: 95px;
+    font-size: 21px;
+  }
+
+  .postcard-card:hover .env-paper {
+    transform: translateX(-50%) translateY(-40px) rotate(-4deg);
+  }
+
+  .letter-card:hover .env-paper {
+    transform: translateX(-50%) translateY(-40px) rotate(-5deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .envelope-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+  }
+
+  .postcard-card,
+  .letter-card {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+  }
+
+  .choose-title {
+    bottom: 4%;
+    font-size: 42px;
+  }
+}

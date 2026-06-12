@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Read Letter</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Serif+SC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./1.2.1read-letter.css" />
+  </head>
+
+  <body>
+    <main class="read-page">
+      <a href="./1.2single-letter.html" class="back-link">back</a>
+
+      <article class="paper">
+        <!-- 顶部信息 -->
+        <section class="letter-head">
+          <div class="letter-meta">
+            <p class="date">MAY&nbsp;&nbsp;26,2026</p>
+            <p>To：教学楼后面的那棵树</p>
+            <p>Place：旧操场旁边</p>
+          </div>
+
+          <figure class="letter-photo">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./ec6707105df88b23643a7635ef30dae1ef74afe5/treeo1.jpg"
+              alt="tree photo"
+            />
+          </figure>
+        </section>
+
+        <!-- 正文 -->
+        <section class="letter-content">
+          <p class="dear">Dear tree</p>
+
+          <p>我第一次注意到你，是因为一场雨。</p>
+          <p>那天下午，雨下得很突然。</p>
+          <p>我从教学楼跑出来的时候，很多人都挤在门口，</p>
+          <p>有人低头看手机，有人抱着画板，</p>
+          <p>有人在等朋友送伞。</p>
+          <p>我本来也想站在那里等雨停。</p>
+          <p>可是门口太吵了，</p>
+          <p>于是我往外走了几步，躲到了你的树下。</p>
+
+          <p>你的枝叶挡不住所有雨水，</p>
+          <p>雨还是会从叶片之间漏下来，落在我的肩膀上。</p>
+          <p>但奇怪的是，那一小块树影下面，</p>
+          <p>声音好像变轻了。</p>
+          <p>雨声、脚步声、远处汽车驶过的声音，</p>
+          <p>都被你轻轻地接住。</p>
+
+          <p>我站在那里，看见你的树干上有很深的纹路，</p>
+          <p>像很多封没有寄出的信。</p>
+          <p>那一刻我突然想到，</p>
+          <p>也许树一直在替我们保存一些东西。</p>
+          <p>保存匆忙经过的人，保存没有说出口的话。</p>
+          <p>保存那些我们以为很快就会忘记的下午。</p>
+
+          <p>后来我开始经常经过你。</p>
+          <p>晴天的时候，你的影子会落在旧操场的边缘。</p>
+          <p>风大的时候，叶子会一片一片翻过去，</p>
+          <p>像有人在轻轻翻书。</p>
+          <p>我没有每次都停下来，</p>
+          <p>但每次看见你，都会觉得自己被提醒了一下。</p>
+
+          <p>谢谢你那天把我从人群和雨声里接过去。</p>
+          <p>也谢谢你一直站在那里。</p>
+
+          <p class="sign">写信的人：一个曾经在雨里停下的人</p>
+        </section>
+
+        <!-- 音频区域 -->
+        <section class="audio-area">
+          <p class="section-title">voice of this letter</p>
+
+          <button class="audio-placeholder" id="letterAudioBtn" type="button">
+            <span class="audio-text">audio area</span>
+            <span class="audio-status">click to listen</span>
+          </button>
+
+          <audio id="letterRainSound" preload="auto">
+            <source
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./bd4262b81478feb2ad5cedd813d81bbb75f33d37/rain-on-leaves-letter.wav"
+              type="audio/wav"
+            />
+          </audio>
+        </section>
+
+        <!-- 印章预留区 -->
+        <section class="stamp-area">
+          <div class="stamp-placeholder">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./2a3a461cfb92e0d8de18cf48149a69a49c7a02bf/%E8%A7%82%E5%AF%9F%E5%8D%B0%E7%AB%A0.png"
+              alt="观察印章"
+            />
+          </div>
+
+          <div class="stamp-placeholder">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./2a3a461cfb92e0d8de18cf48149a69a49c7a02bf/%E5%A3%B0%E9%9F%B3%E5%8D%B0%E7%AB%A0.png"
+              alt="声音印章"
+            />
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <script src="./1.2.1read-letter.js"></script>
+  </body>
+</html>

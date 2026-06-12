@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Write Letter</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Serif+SC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./write.css" />
+  </head>
+
+  <body>
+    <main class="typewriter-page">
+      <!-- 背景 -->
+      <div class="type-bg"></div>
+
+      <a href="./index.html" class="back-link">back</a>
+      <button class="send-btn" id="sendBtn">Send</button>
+
+      <section class="typewriter-stage" id="typewriterStage">
+
+      <button class="add-picture-btn" id="addPictureBtn" type="button" aria-label="add picture">
+        <span class="plus-icon"></span>
+        <span class="add-picture-text">add picture</span>
+      </button>
+      
+      <input
+        type="file"
+        id="pictureInput"
+        class="picture-input"
+        accept="image/*"
+      />
+
+        <!-- 打印机后层 -->
+        <img
+          src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./5218857d9ed4c1faba283c7796996c9e9a26e9f2/printer-back.png"
+          alt="printer back"
+          class="printer-back"
+        />
+
+        <!-- 纸张 -->
+        <div class="paper-wrap" id="paperWrap">
+          <div class="paper" id="paper">
+            <div class="paper-inner">
+              <p class="start-line">Dear tree</p>
+
+              <textarea
+                id="letterInput"
+                class="letter-input"
+                spellcheck="false"
+                placeholder="Click here and start typing..."
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 头针 -->
+        <img
+          src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./5218857d9ed4c1faba283c7796996c9e9a26e9f2/type-head.png"
+          alt="type head"
+          class="type-head"
+          id="typeHead"
+        />
+
+        <!-- 打印机前层 -->
+        <img
+          src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./5218857d9ed4c1faba283c7796996c9e9a26e9f2/printer-front.png"
+          alt="printer front"
+          class="printer-front"
+        />
+
+        <p class="hint" id="hint">
+          Click the paper,<br />
+          then type on your keyboard.
+        </p>
+      </section>
+
+      <!-- 可选音频：如果你之后有音效文件，改这里的 src -->
+      <audio id="keySound" preload="auto">
+        <source
+          src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./cb679398eeef6fa6f494f4fe2de52d0cfc55c284/type-key.wav"
+          type="audio/wav"
+        />
+      </audio>
+      
+      <audio id="returnSound" preload="auto">
+        <source
+          src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./cb679398eeef6fa6f494f4fe2de52d0cfc55c284/type-return.wav"
+          type="audio/wav"
+        />
+      </audio>
+      
+      <audio id="sendSound" preload="auto">
+        <source
+          src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./cb679398eeef6fa6f494f4fe2de52d0cfc55c284/send-paper-fly.wav"
+          type="audio/wav"
+        />
+      </audio>
+    </main>
+
+    <script src="./write.js"></script>
+  </body>
+</html>

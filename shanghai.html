@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shanghai Stamps</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Serif+SC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./shanghai.css" />
+  </head>
+
+  <body>
+    <main class="stamp-page">
+      <a href="./action.html" class="back-link">back</a>
+
+      <section class="stamp-head">
+        <h1>
+          <span>上 海</span>
+          <em>Shang hai</em>
+        </h1>
+
+        <p>
+          每一封写给树的信，都可以盖上一枚行动印章<br />
+          印章不是装饰，而是这封信接下来想引发的行动
+        </p>
+      </section>
+
+      <section class="stamp-description" id="stampDescription">
+        <p class="desc-default">
+          将鼠标停留在一枚印章上，查看它代表的树下行动。
+        </p>
+
+        <p class="desc-text" id="descText"></p>
+      </section>
+
+      <section class="stamp-row">
+        <!-- 观察：点击跳转 -->
+        <article
+          class="stamp-item"
+          data-title="观察印章"
+          data-desc="观察，不是快速经过，而是重新学习停留。它邀请你靠近一棵树，看见树皮、树影、枝叶和周围正在发生的细微变化。"
+        >
+          <a class="stamp-btn" href="./observe.html">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/%E8%A7%82%E5%AF%9F%E5%8D%B0%E7%AB%A0.png"
+              alt="观察印章"
+            />
+          </a>
+          <h2>观察</h2>
+        </article>
+
+        <!-- 声音 -->
+        <article
+          class="stamp-item"
+          data-title="声音印章"
+          data-desc="声音印章记录树下的风声、鸟声、脚步声与人的交谈。它提醒我们，一棵树并不沉默，它也在用周围的声音留下自己的存在。"
+        >
+          <button class="stamp-btn" type="button">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/%E5%A3%B0%E9%9F%B3%E5%8D%B0%E7%AB%A0.png"
+              alt="声音印章"
+            />
+          </button>
+          <h2>声音</h2>
+        </article>
+
+        <!-- 散步 -->
+        <article
+          class="stamp-item stamp-wide"
+          data-title="散步印章"
+          data-desc="散步印章代表一次慢下来的路线。你可以沿着树影走一段路，把一棵树和一片街区重新连接起来。"
+        >
+          <button class="stamp-btn" type="button">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/%E6%95%A3%E6%AD%A5%E5%8D%B0%E7%AB%A0.png"
+              alt="散步印章"
+            />
+          </button>
+          <h2>散步</h2>
+        </article>
+
+        <!-- 照护 -->
+        <article
+          class="stamp-item"
+          data-title="照护印章"
+          data-desc="照护印章意味着一次具体的关心。也许是清理树下垃圾，也许是在炎热天气里留意它的状态，让关心变成可以发生的小行动。"
+        >
+          <button class="stamp-btn" type="button">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/%E7%85%A7%E6%8A%A4%E5%8D%B0%E7%AB%A0.png"
+              alt="照护印章"
+            />
+          </button>
+          <h2>照护</h2>
+        </article>
+
+        <!-- 邀请 -->
+        <article
+          class="stamp-item"
+          data-title="邀请印章"
+          data-desc="邀请印章把一封信交给更多人。它邀请朋友、路人或附近的居民一起读信、回信，或共同参与一次树下行动。"
+        >
+          <button class="stamp-btn" type="button">
+            <img
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/%E9%82%80%E8%AF%B7%E5%8D%B0%E7%AB%A0.png"
+              alt="邀请印章"
+            />
+          </button>
+          <h2>邀请</h2>
+        </article>
+      </section>
+    </main>
+
+    <script src="./shanghai.js"></script>
+  </body>
+</html>

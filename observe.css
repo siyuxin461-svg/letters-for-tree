@@ -1,0 +1,543 @@
+@font-face {
+  font-family: "SongKeXiuKai";
+  src: url("https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./799a6c618473738377410cf4ee2af9110f59035c/%E6%96%B9%E6%AD%A3%E5%AE%8B%E5%88%BB%E6%9C%AC%E7%A7%80%E6%A5%B7%E7%AE%80%E4%BD%93.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #1e1e1e;
+  color: #111;
+  font-family: "SongKeXiuKai", "Noto Serif SC", serif;
+  overflow: hidden;
+}
+
+.observe-page {
+  position: relative;
+  width: calc(100vw - 34px);
+  height: calc(100vh - 34px);
+  margin: 17px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.86), transparent 20%),
+    radial-gradient(circle at 76% 20%, rgba(255, 255, 255, 0.72), transparent 18%),
+    linear-gradient(135deg, rgba(252, 251, 248, 0.98), rgba(244, 241, 233, 0.98));
+
+  box-shadow:
+    inset 0 0 68px rgba(0, 0, 0, 0.045),
+    0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+.observe-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.014) 0,
+      rgba(0, 0, 0, 0.014) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.012) 0,
+      rgba(0, 0, 0, 0.012) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+.back-link {
+  position: absolute;
+  top: 34px;
+  left: 38px;
+  z-index: 20;
+
+  color: rgba(0, 0, 0, 0.56);
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 0.14em;
+
+  transition: 0.35s ease;
+}
+
+.back-link:hover {
+  opacity: 0.55;
+  transform: translateX(-4px);
+}
+
+.page-head {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 52px;
+}
+
+.small-label {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.page-head h1 {
+  margin: 14px 0 0;
+  font-size: clamp(30px, 2.8vw, 52px);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+}
+
+.intro {
+  margin: 16px auto 0;
+  max-width: 620px;
+  font-size: 18px;
+  line-height: 1.9;
+  letter-spacing: 0.12em;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.card-stage {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+  height: calc(100% - 185px);
+  margin-top: 6px;
+
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.card-stage:active {
+  cursor: grabbing;
+}
+
+.card-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.postcard-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: min(76vw, 1080px);
+  height: min(62vh, 620px);
+
+  transform-origin: center center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition:
+    transform 0.7s cubic-bezier(0.22, 0.68, 0.22, 1),
+    opacity 0.7s ease,
+    filter 0.7s ease;
+}
+
+.card-paper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.38), transparent 24%),
+    linear-gradient(135deg, #f0eadf, #e8e0d3);
+
+  box-shadow:
+    0 22px 38px rgba(0, 0, 0, 0.13),
+    0 4px 10px rgba(0, 0, 0, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+
+  overflow: hidden;
+}
+
+/* 去掉多层背板，只保留一层柔和投影 */
+.card-paper::before,
+.card-paper::after {
+  display: none;
+}
+
+/* 图片区域 */
+.photo-area {
+  position: absolute;
+  left: 58px;
+  top: 56px;
+
+  width: 178px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-slot {
+  position: relative;
+
+  width: 178px;
+  height: 224px;
+
+  border-radius: 28px;
+  overflow: hidden;
+
+  background: #d9d4c9;
+  background-size: cover;
+  background-position: center;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.48),
+    0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.photo-slot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.2), transparent 34%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.05));
+
+  pointer-events: none;
+}
+
+/* 同感按钮：默认半透明 */
+.empathy-btn {
+  position: relative;
+
+  margin-top: 18px;
+  min-width: 82px;
+  height: 36px;
+  padding: 0 18px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(238, 213, 143, 0.42);
+  color: rgba(148, 118, 54, 0.56);
+
+  font-family: "SongKeXiuKai", "Noto Serif SC", serif;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 7px 16px rgba(165, 136, 69, 0.08);
+
+  opacity: 0.48;
+
+  transition:
+    opacity 0.45s ease,
+    background 0.45s ease,
+    color 0.45s ease,
+    box-shadow 0.45s ease,
+    transform 0.45s ease;
+}
+
+.empathy-btn span {
+  margin-left: 4px;
+}
+
+/* 只有未点击时 hover 才闪烁 */
+.empathy-btn:not(.is-liked):hover {
+  animation: empathyBlink 2.1s ease-in-out infinite;
+  transform: translateY(-2px);
+}
+
+@keyframes empathyBlink {
+  0%,
+  100% {
+    opacity: 0.5;
+    background: rgba(238, 213, 143, 0.42);
+    color: rgba(148, 118, 54, 0.56);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.5),
+      0 7px 16px rgba(165, 136, 69, 0.08);
+  }
+
+  50% {
+    opacity: 0.92;
+    background: rgba(238, 213, 143, 0.78);
+    color: rgba(145, 113, 42, 0.9);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.72),
+      0 0 18px rgba(219, 190, 104, 0.34),
+      0 8px 18px rgba(165, 136, 69, 0.14);
+  }
+}
+
+/* 点击后变实色 */
+.empathy-btn.is-liked {
+  opacity: 1 !important;
+  background: rgba(238, 213, 143, 1) !important;
+  color: rgba(132, 99, 28, 1) !important;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.88),
+    0 8px 18px rgba(165, 136, 69, 0.2) !important;
+
+  animation: none !important;
+  transform: none !important;
+}
+
+/* 点击后 hover 不再有闪烁或变化 */
+.empathy-btn.is-liked:hover {
+  opacity: 1 !important;
+  background: rgba(238, 213, 143, 1) !important;
+  color: rgba(132, 99, 28, 1) !important;
+
+  animation: none !important;
+  transform: none !important;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.88),
+    0 8px 18px rgba(165, 136, 69, 0.2) !important;
+}
+
+.card-content {
+  position: absolute;
+  left: 292px;
+  right: 52px;
+  top: 52px;
+  bottom: 38px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+}
+
+.place {
+  margin: 24px 0 0;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.content-mask {
+  position: relative;
+  margin-top: 18px;
+
+  flex: 1;
+  overflow: hidden;
+
+  overscroll-behavior: contain;
+
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+}
+
+.content-inner {
+  transform: translateY(0);
+  transition: transform 0.7s ease;
+  will-change: transform;
+}
+
+.content-inner p {
+  margin: 0 0 12px;
+  font-size: 17px;
+  line-height: 1.72;
+  letter-spacing: 0.06em;
+  color: rgba(0, 0, 0, 0.84);
+}
+
+/* 卡片状态 */
+.postcard-card.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 6;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+}
+
+.postcard-card.prev {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 4;
+  transform: translate(-96%, -46%) scale(0.9) rotate(-6deg);
+}
+
+.postcard-card.next {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 4;
+  transform: translate(-4%, -46%) scale(0.9) rotate(6deg);
+}
+
+.postcard-card.far-prev {
+  opacity: 0.45;
+  pointer-events: auto;
+  z-index: 2;
+  transform: translate(-128%, -42%) scale(0.82) rotate(-10deg);
+  filter: blur(1px);
+}
+
+.postcard-card.far-next {
+  opacity: 0.45;
+  pointer-events: auto;
+  z-index: 2;
+  transform: translate(28%, -42%) scale(0.82) rotate(10deg);
+  filter: blur(1px);
+}
+
+.postcard-card.hidden-left {
+  opacity: 0;
+  z-index: 1;
+  transform: translate(-160%, -40%) scale(0.75) rotate(-13deg);
+}
+
+.postcard-card.hidden-right {
+  opacity: 0;
+  z-index: 1;
+  transform: translate(56%, -40%) scale(0.75) rotate(13deg);
+}
+
+/* 底部圆点 */
+.page-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  display: flex;
+  gap: 12px;
+}
+
+.page-dots button {
+  width: 10px;
+  height: 10px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.page-dots button.active {
+  width: 28px;
+  border-radius: 999px;
+  background: rgba(103, 120, 82, 0.7);
+}
+
+@media (max-width: 900px) {
+  .postcard-card {
+    width: min(88vw, 760px);
+    height: min(64vh, 620px);
+  }
+
+  .photo-area {
+    left: 36px;
+    top: 42px;
+    width: 138px;
+  }
+
+  .photo-slot {
+    width: 138px;
+    height: 178px;
+    border-radius: 24px;
+  }
+
+  .empathy-btn {
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .card-content {
+    left: 210px;
+    right: 34px;
+    top: 42px;
+  }
+
+  .content-inner p {
+    font-size: 15px;
+  }
+}
+
+/* 同感按钮默认：半透明 */
+.empathy-btn {
+  opacity: 0.48;
+  background: rgba(238, 213, 143, 0.42);
+  color: rgba(148, 118, 54, 0.56);
+}
+
+/* 只有未点击时 hover 闪烁 */
+.empathy-btn:not(.is-liked):hover {
+  animation: empathyBlink 2.1s ease-in-out infinite;
+  transform: translateY(-2px);
+}
+
+/* hover 闪烁最深状态 */
+@keyframes empathyBlink {
+  0%,
+  100% {
+    opacity: 0.48;
+    background: rgba(238, 213, 143, 0.42);
+    color: rgba(148, 118, 54, 0.56);
+  }
+
+  50% {
+    opacity: 1;
+    background: rgba(238, 213, 143, 0.92);
+    color: rgba(120, 92, 34, 1);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.78),
+      0 0 18px rgba(219, 190, 104, 0.36),
+      0 8px 18px rgba(165, 136, 69, 0.16);
+  }
+}
+
+/* 点击后：停留在 hover 最深色，不再闪烁 */
+.empathy-btn.is-liked,
+.empathy-btn.is-liked:hover,
+.empathy-btn.is-liked:focus,
+.empathy-btn.is-liked:active {
+  opacity: 1 !important;
+  background: rgba(238, 213, 143, 0.92) !important;
+  color: rgba(120, 92, 34, 1) !important;
+
+  animation: none !important;
+  transform: none !important;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.78),
+    0 0 18px rgba(219, 190, 104, 0.36),
+    0 8px 18px rgba(165, 136, 69, 0.16) !important;
+}

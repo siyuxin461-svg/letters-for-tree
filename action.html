@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose a City</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Serif+SC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./action.css" />
+  </head>
+
+  <body>
+    <main class="action-page">
+      <div class="action-bg"></div>
+
+      <a href="./index.html" class="back-link">back</a>
+
+      <section class="page-head">
+        <h1>Choose a city</h1>
+
+        <p>
+          每座城市，都有正在等待回信的树。<br />
+          选择一个城市，查看它正在发生的树下行动。
+        </p>
+
+        <div class="search-box">
+          <input
+            type="text"
+            id="citySearch"
+            placeholder="搜索"
+            autocomplete="off"
+          />
+        </div>
+      </section>
+
+      <section class="city-grid" id="cityGrid">
+        <!-- 北京 -->
+        <a
+          href="./beijing.html"
+          class="city-card"
+          data-city="北京 beijing"
+        >
+          <div class="city-image">
+            <img
+              class="color-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/beijing.png"
+              alt="Beijing"
+            />
+            <img
+              class="bw-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/beijing.png"
+              alt=""
+            />
+          </div>
+
+          <div class="city-overlay"></div>
+
+          <div class="city-title">
+            <span class="cn">北 京</span>
+            <span class="en">Beijing</span>
+          </div>
+
+          <div class="city-stats">
+            <p><span>128</span><span>封信</span></p>
+            <p><span>36</span><span>棵树</span></p>
+            <p><span>12</span><span>个行动</span></p>
+          </div>
+        </a>
+
+        <!-- 上海 -->
+        <a
+          href="./shanghai.html"
+          class="city-card"
+          data-city="上海 shanghai"
+        >
+          <div class="city-image">
+            <img
+              class="color-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/shanghai.png"
+              alt="Shanghai"
+            />
+            <img
+              class="bw-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/shanghai.png"
+              alt=""
+            />
+          </div>
+
+          <div class="city-overlay"></div>
+
+          <div class="city-title">
+            <span class="cn">上 海</span>
+            <span class="en">Shan hai</span>
+          </div>
+
+          <div class="city-stats">
+            <p><span>96</span><span>封信</span></p>
+            <p><span>28</span><span>棵树</span></p>
+            <p><span>9</span><span>个行动</span></p>
+          </div>
+        </a>
+
+        <!-- 东京 -->
+        <a
+          href="./toyoko.html"
+          class="city-card"
+          data-city="东京 toyoko tokyo"
+        >
+          <div class="city-image">
+            <img
+              class="color-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/toyoko.png"
+              alt="Toyoko"
+            />
+            <img
+              class="bw-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/toyoko.png"
+              alt=""
+            />
+          </div>
+
+          <div class="city-overlay"></div>
+
+          <div class="city-title">
+            <span class="cn">东 京</span>
+            <span class="en">Toyoko</span>
+          </div>
+
+          <div class="city-stats">
+            <p><span>112</span><span>封信</span></p>
+            <p><span>31</span><span>棵树</span></p>
+            <p><span>10</span><span>个行动</span></p>
+          </div>
+        </a>
+
+        <!-- 深圳 -->
+        <a
+          href="./shenzhen.html"
+          class="city-card"
+          data-city="深圳 shenzhen"
+        >
+          <div class="city-image">
+            <img
+              class="color-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/shenzhen.png"
+              alt="Shenzhen"
+            />
+            <img
+              class="bw-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/shenzhen.png"
+              alt=""
+            />
+          </div>
+
+          <div class="city-overlay"></div>
+
+          <div class="city-title">
+            <span class="cn">深 圳</span>
+            <span class="en">Shenzhen</span>
+          </div>
+
+          <div class="city-stats">
+            <p><span>74</span><span>封信</span></p>
+            <p><span>22</span><span>棵树</span></p>
+            <p><span>7</span><span>个行动</span></p>
+          </div>
+        </a>
+
+        <!-- 加利福尼亚 -->
+        <a
+          href="./california.html"
+          class="city-card"
+          data-city="加利福尼亚 california"
+        >
+          <div class="city-image">
+            <img
+              class="color-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/california.png"
+              alt="California"
+            />
+            <img
+              class="bw-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/california.png"
+              alt=""
+            />
+          </div>
+
+          <div class="city-overlay"></div>
+
+          <div class="city-title">
+            <span class="cn">加 州</span>
+            <span class="en">California</span>
+          </div>
+
+          <div class="city-stats">
+            <p><span>88</span><span>封信</span></p>
+            <p><span>19</span><span>棵树</span></p>
+            <p><span>8</span><span>个行动</span></p>
+          </div>
+        </a>
+
+        <!-- 香港 -->
+        <a
+          href="./hongkong.html"
+          class="city-card"
+          data-city="香港 hongkong hong kong"
+        >
+          <div class="city-image">
+            <img
+              class="color-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/hongkong.png"
+              alt="Hong Kong"
+            />
+            <img
+              class="bw-img"
+              src="https://raw.githubusercontent.com/siyuxin461-svg/letter-for-tree-images./6f4eaecd21304f928fde46485f65771cd2bf635e/hongkong.png"
+              alt=""
+            />
+          </div>
+
+          <div class="city-overlay"></div>
+
+          <div class="city-title">
+            <span class="cn">香 港</span>
+            <span class="en">Hong Kong</span>
+          </div>
+
+          <div class="city-stats">
+            <p><span>65</span><span>封信</span></p>
+            <p><span>17</span><span>棵树</span></p>
+            <p><span>6</span><span>个行动</span></p>
+          </div>
+        </a>
+      </section>
+    </main>
+
+    <script src="./action.js"></script>
+  </body>
+</html>

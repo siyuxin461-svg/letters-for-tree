@@ -1,0 +1,95 @@
+<<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letters For Tree</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Noto+Serif+SC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 注意：如果你的 CSS 文件叫 styles.css，就改成 ./styles.css -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <main class="page">
+      <!-- 背景图层 -->
+      <div class="background-layer"></div>
+
+      <!-- 中央悬浮图片预览区 -->
+      <div class="preview" id="preview">
+        <div class="preview-image" id="previewImage">
+          <span>图片预留位置</span>
+        </div>
+        <p class="preview-text" id="previewText"></p>
+      </div>
+
+      <!-- 标题 -->
+      <h1 class="title">Letters&nbsp;&nbsp; For&nbsp;&nbsp; Tree</h1>
+
+ <!-- 漂浮入口文字 -->
+  <nav class="floating-nav">
+  <a
+     href="./1.letter.html"
+     class="float-word word-letter"
+     data-image="./images/letter.jpg"
+     data-intro="打开树收到的信|在陌生人的停留里，看见一棵树被记住的方式|每一封信，都是一次轻轻靠近"
+      >
+  信 件
+</a>
+    
+      <button
+        type="button"
+        class="float-word word-map"
+        onclick="window.location.href='./echo.html'"
+        data-image="./images/map.jpg"
+        data-intro="沿着地图寻找树的位置|那些被写下的故事，会慢慢在城市里显影|从一个点开始，看见更多树的方向"
+      >
+        回声
+      </button>
+    
+      <button
+        type="button"
+        class="float-word word-write"
+        onclick="window.location.href='./write.html'"
+        data-image="./images/write.jpg"
+        data-intro="写给一棵你路过的树|可以是一段回忆、一次感谢，或者一句没有说出口的话|让它被留下，也让它被听见"
+      >
+        写 信
+      </button>
+    
+      <button
+        type="button"
+        class="float-word word-action"
+        onclick="window.location.href='./action.html'"
+        data-image="./images/action.jpg"
+        data-intro="把一次观看，变成一次行动|为树盖下一枚印章，记录观察、散步、照料与陪伴|让故事不只停留在纸上"
+      >
+        行 动
+      </button>
+    
+      <button
+        type="button"
+        class="float-word word-about"
+        onclick="window.location.href='./about.html'"
+        data-image="./images/about.jpg"
+        data-intro="这是一个写给树的网页|它收集人和树之间的片刻关系，也邀请更多温柔的行动发生|从一封信开始，重新看见身边的树"
+      >
+        关 于
+      </button>
+    </nav>
+
+      <!-- 底部默认文字，不能删，因为 JS 需要它 -->
+      <section class="intro" id="intro">
+        <p>给一棵树写信，</p>
+        <p>记录一次停留，一片树影，一段没有说出口的记忆。</p>
+        <p>让故事被看见，也让行动慢慢发生。</p>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,415 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Courier Prime", "Noto Serif SC", "Songti SC", serif;
+}
+
+/* 整个首页 */
+.page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  border: 6px solid #111;
+}
+
+/* 背景图位置 */
+.background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  /*
+    这里换成你的背景图路径。
+    如果你在 StackBlitz 里建了 images 文件夹，
+    并上传 bg.jpg，就写：
+    background-image: url("./images/bg.jpg");
+  */
+
+  background-image: url("./images/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 1;
+  filter: grayscale(100%) contrast(90%) brightness(112%);
+}
+
+
+/* 标题位置 */
+.title {
+  position: absolute;
+  top: 9.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+
+  font-family: "Courier Prime", "Noto Serif SC", serif;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+
+/* 漂浮导航 */
+.floating-nav {
+  position: absolute;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: auto;
+}
+
+.float-word {
+  position: absolute;
+  display: inline-block;
+
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+
+  color: #111;
+  text-decoration: none;
+
+  font-family: "Courier Prime", "Noto Serif SC", "Songti SC", serif;
+  font-size: clamp(16px, 1.35vw, 23px);
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  line-height: 1.2;
+
+  opacity: 0.92;
+  cursor: pointer;
+
+  z-index: 100000;
+  pointer-events: auto;
+
+  transition: opacity 0.35s ease, transform 0.35s ease,
+    letter-spacing 0.35s ease;
+}
+
+.background-layer,
+.preview,
+.preview-image,
+.title,
+.intro {
+  pointer-events: none;
+}
+
+/* 小字基础样式 */
+.float-word {
+  position: absolute;
+  display: inline-block;
+
+  color: #111;
+  text-decoration: none;
+
+  font-family: "Courier Prime", "Noto Serif SC", "Songti SC", serif;
+  font-size: clamp(16px, 1.35vw, 23px);
+  font-weight: 400;
+  letter-spacing: 0.28em;
+
+  opacity: 0.92;
+  cursor: pointer;
+
+  transition: opacity 0.35s ease, transform 0.35s ease,
+    letter-spacing 0.35s ease;
+}
+
+/* 位置根据你的平面图设置 */
+.word-letter {
+  left: 5.3%;
+  top: 30%;
+  animation: floatA 6s ease-in-out infinite;
+}
+
+.word-map {
+  right: 5%;
+  top: 36%;
+  animation: floatB 7s ease-in-out infinite;
+}
+
+.word-write {
+  right: 80%;
+  top: 70%;
+  animation: floatC 6.5s ease-in-out infinite;
+}
+
+.word-action {
+  left: 14.5%;
+  bottom: 45%;
+  animation: floatD 7.2s ease-in-out infinite;
+}
+
+.word-about {
+  right: 9.2%;
+  bottom: 30%;
+  animation: floatE 6.8s ease-in-out infinite;
+}
+
+/* 鼠标悬浮时停止漂浮 */
+.float-word:hover {
+  animation-play-state: paused;
+  transform: scale(1.08);
+  letter-spacing: 0.34em;
+  opacity: 1;
+}
+
+/* 底部长文案位置 */
+.intro {
+  position: absolute;
+  left: 50%;
+  bottom: 8.8%;
+  transform: translateX(-50%);
+  z-index: 5;
+
+  width: min(760px, 70vw);
+  text-align: center;
+
+  font-family: "Courier Prime", "Noto Serif SC", "Songti SC", serif;
+  font-size: clamp(14px, 1.45vw, 15px);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.16em;
+
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* 文案淡出时：轻轻往下沉 */
+.intro.fade-out {
+  opacity: 0;
+  transform: translateX(-50%) translateY(16px);
+}
+
+.intro p {
+  margin: 0.05em 0;
+}
+
+/* 底部文字：每个字单独动画 */
+.intro .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(-26px, -22px) scale(0.96);
+  filter: blur(4px);
+  animation: charFloatIn 0.9s ease forwards;
+  animation-delay: calc(var(--i) * 0.035s);
+}
+
+@keyframes charFloatIn {
+  0% {
+    opacity: 0;
+    transform: translate(-26px, -22px) scale(0.96);
+    filter: blur(4px);
+  }
+
+  60% {
+    opacity: 0.75;
+    transform: translate(4px, 3px) scale(1.01);
+    filter: blur(1.2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+/* 中央图片预览 */
+.preview {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%) scale(0.6);
+  z-index: 2;
+
+  width: min(130px, 16vw);
+  height: auto;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.preview.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.preview-image {
+  width: 100%;
+  height: 260px;
+
+  border: none;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.preview-image span {
+  display: none;
+}
+
+.preview-text {
+  margin-top: 14px;
+  text-align: center;
+
+  font-size: 15px;
+  letter-spacing: 0.24em;
+  opacity: 0.82;
+}
+
+/* 漂浮动画 */
+@keyframes floatA {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(8px, -14px);
+  }
+}
+
+@keyframes floatB {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-10px, 12px);
+  }
+}
+
+@keyframes floatC {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(12px, 10px);
+  }
+}
+
+@keyframes floatD {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-8px, -12px);
+  }
+}
+
+@keyframes floatE {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, -10px);
+  }
+}
+
+/* 小屏电脑适配 */
+@media (max-width: 900px) {
+  .title {
+    top: 8%;
+    font-size: 40px;
+  }
+
+  .intro {
+    width: 80vw;
+    bottom: 8%;
+    font-size: 15px;
+  }
+
+  .preview {
+    width: 46vw;
+  }
+
+  .float-word {
+    font-size: 15px;
+  }
+}
+
+.sub-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  background: #f4f4f2;
+  color: #111;
+  font-family: "Courier Prime", "Noto Serif SC", "Songti SC", serif;
+
+  border: 6px solid #111;
+  padding: 60px;
+}
+
+.back-home {
+  position: absolute;
+  left: 60px;
+  top: 45px;
+
+  color: #111;
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+}
+
+.sub-title {
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  transform: translateX(-50%);
+
+  font-size: clamp(38px, 5vw, 72px);
+  letter-spacing: 0.25em;
+  font-weight: 400;
+}
+
+.sub-content {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+
+  width: min(720px, 70vw);
+  text-align: center;
+
+  font-size: 22px;
+  line-height: 1.8;
+  letter-spacing: 0.16em;
+}
+
+.background-layer,
+.preview,
+.preview-image,
+.title,
+.intro {
+  pointer-events: auto;
+}
